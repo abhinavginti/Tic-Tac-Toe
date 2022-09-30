@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="index.js" defer></script>
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
-    <script src="index.js"></script>
+    <div class="__container">
+        <div class="options">
+            <button onclick="toggleMode()" id="toggleMode">Multi Player Mode</button>
+            <button onclick="resetGame()" id="reset">Reset</button>
+        </div>
+        <h1 id="__header">TIC TAC TOE</h1>
+        <div id="__line"></div>
+        <div class="__box-container">
+            <div class="__box bt-0 bs-0"></div>
+            <div class="__box bt-0"></div>
+            <div class="__box bt-0 be-0"></div>
+            <div class="__box bs-0"></div>
+            <div class="__box"></div>
+            <div class="__box be-0"></div>
+            <div class="__box bs-0 bb-0"></div>
+            <div class="__box bb-0"></div>
+            <div class="__box bb-0 be-0"></div>
+        </div>
+        <p id="msg-box"></p>
+    </div>
 </body>
+
 </html>
