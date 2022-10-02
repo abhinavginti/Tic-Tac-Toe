@@ -58,8 +58,8 @@ boxes.forEach((box, idx) => {
         if (!gameOver && box.innerText === '') {
             box.innerText = turn;
             BoxArr[idx] = turn
-            const chkwin = checkWin(true) 
-            if(!chkwin) toggleTurn();
+            const chkwin = checkWin(true)
+            if (!chkwin) toggleTurn();
             if (CPUMode && turn === cpu && chkwin === null) {
                 CPUMove()
             }
@@ -117,11 +117,20 @@ const checkWin = (winStroke, Arr) => {
 
     let ifTie = true;
 
-    boxes.forEach(box => {
+    if (Arr) {
+        for (let i = 0; i < 9; i++){
+            if(Arr[i] === ''){
+                ifTie = false;
+            }
+        }
+    }
+
+    !Arr && boxes.forEach(box => {
         if (box.innerText === '') {
             ifTie = false;
         }
     })
+
     if (winner === null && ifTie) {
         msgbox.innerText = `It is a Draw`
         return 'tie'
@@ -168,7 +177,7 @@ const CPUMove = () => {
     boxes[bestMove].innerText = cpu;
     BoxArr[bestMove] = cpu
     let chkwin = checkWin(true)
-    if(!chkwin) toggleTurn()
+    if (!chkwin) toggleTurn()
 
     // const Select = Math.floor(Math.random() * 8);
     // if (boxes[Select].innerText === '') {
