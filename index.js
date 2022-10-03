@@ -18,6 +18,7 @@ msgbox.innerText = `Player ${turn}'s turn`
 const resetGame = () => {
     boxes.forEach(box => {
         box.innerHTML = ''
+        box.classList.remove('animate')
     })
     BoxArr = ['', '', '', '', '', '', '', '', '']
     line.classList.remove('active')
@@ -34,6 +35,7 @@ const resetGame = () => {
             player = 'O'
             cpu = 'X'
             boxes[0].innerHTML = 'X';
+            boxes[0].classList.add('animate')
             BoxArr[0] = 'X'
             toggleTurn();
             //CPUMove()
@@ -47,6 +49,7 @@ const resetGame = () => {
     }
     if (cpu === 'X') {
         boxes[0].innerHTML = 'X';
+        boxes[0].classList.add('animate')
         BoxArr[0] = 'X'
         toggleTurn()
         //CPUMove();
@@ -58,6 +61,7 @@ boxes.forEach((box, idx) => {
         if (!gameOver && box.innerText === '') {
             box.innerText = turn;
             BoxArr[idx] = turn
+            box.classList.add('animate')
             const chkwin = checkWin(true)
             if (!chkwin) toggleTurn();
             if (CPUMode && turn === cpu && chkwin === null) {
@@ -145,7 +149,7 @@ const toggleTurn = () => {
 const toggleMode = () => {
     const toggleBtn = document.querySelector('#toggleMode')
     CPUMode = !CPUMode;
-    toggleBtn.innerText = CPUMode ? 'Single Player Mode' : 'Multi Player Mode'
+    toggleBtn.innerText = CPUMode ? 'Multi Player Mode' : 'Single Player Mode'
     cpu = ''
     resetGame()
 }
@@ -175,6 +179,7 @@ const CPUMove = () => {
         }
     }
     boxes[bestMove].innerText = cpu;
+    boxes[bestMove].classList.add('animate')
     BoxArr[bestMove] = cpu
     let chkwin = checkWin(true)
     if (!chkwin) toggleTurn()

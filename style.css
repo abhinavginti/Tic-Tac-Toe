@@ -2,6 +2,7 @@
 
 :root {
     --box-size: 10vmax;
+    --color-theme: #FFCB05;
 }
 
 *,
@@ -18,14 +19,22 @@ body {
 
 .__container {
     min-height: 100vh;
-    background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);
+    /* background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12); */
+    background-color: #121212;
     position: relative;
 }
 
 .__container #__header {
     text-align: center;
     padding: 0rem 0rem 1rem 0;
-    font-size: 3.5rem;
+    font-size: 4.2vmax;
+    color: var(--color-theme);
+}
+
+.__container .tic_tac_toe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .__container .__box-container {
@@ -33,14 +42,16 @@ body {
     display: grid;
     grid-template-columns: repeat(3, var(--box-size));
     grid-template-rows: repeat(3, var(--box-size));
-    place-content: center;
+    /* place-content: center; */
+    background-color: #1d1d1d;
 }
 
 .__container .options {
-    padding: 1rem 1rem;
+    padding: 1rem 2rem;
     display: flex;
     gap: 10px;
     justify-content: end;
+
 }
 
 .__container #toggleMode,
@@ -48,27 +59,55 @@ body {
     /* position: absolute;
     top: 10px;
     right: 10px; */
-
-    background-color: #051937;
-    color: #fff;
+    background-color: var(--color-theme);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%);
+    color: #00274c;
+    font-size: 11.5px;
+    font-weight: bold;
+    text-transform: uppercase;
     padding: 0.7rem 1rem;
-    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    border: none;
 }
 
-.__container #toggleMode:hover,
+#reset {
+    background: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+}
+
+.__container #toggleMode:hover {
+    background-color: #fff;
+    clip-path: polygon(0% 0%, calc(100% - 15px) 0%, 100% 50%, calc(100% - 15px) 100%, 0% 100%);
+}
+
 #reset:hover {
-    background-color: rgba(5, 25, 55, 0.9);
+    color: #000;
+    background-color: #fff;
 }
 
 .__container .__box-container .__box {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 6rem;
     border: 2px solid black;
+    color: var(--color-theme);
     transition: background-color 0.25s ease-in-out;
+}
+
+.__container .__box-container .__box.animate {
+    animation: move-animation 0.5s forwards linear;
+}
+
+@keyframes move-animation {
+    from {
+        font-size: 0;
+    }
+
+    to {
+        font-size: 8vmax;
+    }
 }
 
 #msg-box {
@@ -103,21 +142,24 @@ body {
     /* width: calc(var(--box-size) * 3); */
     height: 3px;
     opacity: 0;
-    background-color: black;
+    background-color: var(--color-theme);
     left: 50%;
     transform: rotate(90deg);
+    z-index: 1;
     /* transform: translateX(-50%)
     translateY(calc(var(--box-size) / 2)); */
 }
 
-.__container #__line.active{
+.__container #__line.active {
     animation: line-animation 1s forwards linear;
 }
 
 @keyframes line-animation {
-    from{
+    from {
         width: 0;
-    }to{
+    }
+
+    to {
         width: calc(var(--box-size) * 3);
     }
 }
