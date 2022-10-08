@@ -13,8 +13,8 @@
 <body>
     <div class="__container">
         <div class="options">
-            <button onclick="toggleMode()" id="toggleMode">Single Player Mode</button>
-            <button onclick="resetGame()" id="reset">Reset</button>
+            <button onclick="toggleMode()" class="btn" id="toggleMode">Single Player Mode</button>
+            <button onclick="resetGame()" class="btn" id="reset">Reset</button>
         </div>
         <h1 id="__header">TIC TAC TOE</h1>
         <div id="__line"></div>
@@ -31,6 +31,14 @@
                 <div class="__box bb-0 be-0"></div>
             </div>
         </div>
+        <dialog class="modal" id="choice-modal">
+            <p>Select your Player</p>
+            <hr/>
+            <div class="choices">
+                <button onclick="optPlayer('X')" class="btn">Player X</button>
+                <button onclick="optPlayer('O')" class="btn">Player O</button>
+            </div>
+        </dialog>
         <p id="msg-box"></p>
     </div>
 </body>

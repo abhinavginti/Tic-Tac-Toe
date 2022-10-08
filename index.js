@@ -10,10 +10,32 @@ const msgbox = document.querySelector('#msg-box')
 // const boxContainer = document.querySelector('.__box-container')
 const line = document.querySelector('#__line')
 
+
+const choiceModal = document.querySelector('#choice-modal')
+const initModal = () => choiceModal.showModal()
+const closeModal = () => choiceModal.close();
+
 let BoxArr = ['', '', '', '', '', '', '', '', '']
 
 msgbox.innerText = `Player ${turn}'s turn`
 
+const optPlayer = (opt) => {
+    if (opt === 'O') {
+        player = 'O'
+        cpu = 'X'
+        boxes[0].innerHTML = 'X';
+        boxes[0].classList.add('animate')
+        BoxArr[0] = 'X'
+        toggleTurn();
+        closeModal();
+        //CPUMove()
+        return
+    } else if (opt === 'X') {
+        player = 'X'
+        cpu = 'O'
+        closeModal();
+    }
+}
 
 const resetGame = () => {
     boxes.forEach(box => {
@@ -30,22 +52,7 @@ const resetGame = () => {
     msgbox.innerText = `Player ${turn}'s turn`
     gameOver = false;
     if (CPUMode && cpu === '') {
-        const opt = prompt('Select your Player (X or O)').toUpperCase()
-        if (opt === 'O') {
-            player = 'O'
-            cpu = 'X'
-            boxes[0].innerHTML = 'X';
-            boxes[0].classList.add('animate')
-            BoxArr[0] = 'X'
-            toggleTurn();
-            //CPUMove()
-            return
-        } else if (opt === 'X') {
-            player = 'X'
-            cpu = 'O'
-        } else {
-            resetGame()
-        }
+        initModal();
     }
     if (cpu === 'X') {
         boxes[0].innerHTML = 'X';
@@ -122,8 +129,8 @@ const checkWin = (winStroke, Arr) => {
     let ifTie = true;
 
     if (Arr) {
-        for (let i = 0; i < 9; i++){
-            if(Arr[i] === ''){
+        for (let i = 0; i < 9; i++) {
+            if (Arr[i] === '') {
                 ifTie = false;
             }
         }
